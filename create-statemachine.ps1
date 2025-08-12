@@ -1,6 +1,7 @@
 param(
 	[string] $Name,
-	[string] $ParentDir
+	[string] $ParentDir,
+	[string[]] $InitialStates = @("Disabled", "Enabled")
 )
 
 function PascalToSnake([string] $Value) {
@@ -11,6 +12,27 @@ function PascalToSnake([string] $Value) {
 function MakePath([string] $RawPath) {
 	# this ensures path resolution works on Windows and macOS
 	return Join-Path (Resolve-Path .) $RawPath
+}
+
+function CreateStateFile([string] $StateName) {
+	$machinePrefix = PascalToSnake -Value $Name
+	$stateNameLower = $StateName.ToLower()
+
+	$stateFileName = "$($machinePrefix)_state_$($stateNameLower).gd"
+	$stateFilePath = MakePath -RawPath "$ParentDir\$baseDir\$statesDir\$stateFileName"
+
+	Write-Host "Writing $stateNameLower state file '$stateFileName'..."
+
+	[IO.File]::WriteAllLines(
+		$stateFilePath,
+		[string[]]@(
+			"class_name $($Name)State$($StateName)",
+			"extends $($Name)State",
+			"",
+			"func _enter_tree() -> void:"
+				"`tprint(`"$Name is now $($stateNameLower)`")"
+		)
+	)
 }
 
 if (-not $Name) {
@@ -29,20 +51,28 @@ $baseFilePath = MakePath -RawPath "$ParentDir\$baseDir\$baseFileName"
 
 Write-Host "Writing base file '$baseFileName'..."
 
+$stateEnumStr = [string[]]($InitialStates | % {
+	return $_.ToUpper()
+}) -join ", "
+
 [IO.File]::WriteAllLines(
 	$baseFilePath,
 	[string[]]@(
 		"class_name $Name",
 		"extends Node",
 		"",
-		"enum State { ENABLED }"
-		)
-		)
+		"enum State { $stateEnumStr }"
+	)
+)
 
 $stateFactoryFileName = "$(PascalToSnake -Value $Name)_state_factory.gd"
 $stateFactoryFilePath = MakePath -RawPath "$ParentDir\$baseDir\$stateFactoryFileName"
 
 Write-Host "Writing state factory file '$stateFactoryFileName'..."
+
+$statesDictLines = [string[]]($InitialStates | % {
+	return "`t`t$($Name).State.$($_.ToUpper()): $($Name)State$($_),"
+})
 
 [IO.File]::WriteAllLines(
 	$stateFactoryFilePath,
@@ -52,8 +82,10 @@ Write-Host "Writing state factory file '$stateFactoryFileName'..."
 		"var states: Dictionary",
 		"",
 		"func _init() -> void:",
-		"`tstates = {",
-		"`t`t$($Name).State.ENABLED: $($Name)StateEnabled,",
+		"`tstates = {"
+	) +
+	$statesDictLines +
+	[string[]]@(
 		"`t}",
 		"",
 		"func get_fresh_state(state: $($Name).State) -> $($Name)State:",
@@ -114,18 +146,6 @@ $fieldName = PascalToSnake -Value $Name
 	)
 )
 
-$enabledStateFileName = "$(PascalToSnake -Value $Name)_state_enabled.gd"
-$enabledStateFilePath = MakePath -RawPath "$ParentDir\$baseDir\$statesDir\$enabledStateFileName"
-
-Write-Host "Writing enabled state file '$enabledStateFileName'..."
-
-[IO.File]::WriteAllLines(
-	$enabledStateFilePath,
-	[string[]]@(
-		"class_name $($Name)StateEnabled",
-		"extends $($Name)State",
-		"",
-		"func _enter_tree() -> void:"
-			"`tprint(`"$Name is now enabled`")"
-	)
-)
+$InitialStates | % {
+	CreateStateFile -StateName $_
+}
