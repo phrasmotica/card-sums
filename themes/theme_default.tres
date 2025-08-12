@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cgpfhobwe8j8i"]
+
+[ext_resource type="FontFile" uid="uid://b6p2iboxgwjr8" path="res://assets/fonts/SuperPixel-m2L8j.ttf" id="1_yll3u"]
+
+[resource]
+default_font = ExtResource("1_yll3u")
+DefaultMarginContainer/base_type = &"MarginContainer"
+DefaultMarginContainer/constants/margin_bottom = 20
+DefaultMarginContainer/constants/margin_left = 20
+DefaultMarginContainer/constants/margin_right = 20
+DefaultMarginContainer/constants/margin_top = 20
+TitleLabel/base_type = &"Label"
+TitleLabel/font_sizes/font_size = 96
