@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://docpaapc65d5v"]
+
+[ext_resource type="Theme" uid="uid://cgpfhobwe8j8i" path="res://themes/theme_default.tres" id="1_m04bp"]
+[ext_resource type="PackedScene" uid="uid://dhfyj55kkj33x" path="res://scenes/ui/card_receptacle/card_receptacle.tscn" id="2_3tk8j"]
+
+[node name="SumBoard" type="PanelContainer"]
+custom_minimum_size = Vector2(800, 400)
+theme = ExtResource("1_m04bp")
+theme_type_variation = &"SumBoardContainer"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_type_variation = &"DefaultMarginContainer"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NumberLabel0" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SumNumberLabel"
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OperatorLabel0" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SumNumberLabel"
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumberLabel1" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SumNumberLabel"
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OperatorLabel1" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SumNumberLabel"
+text = "x"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumberLabel2" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SumNumberLabel"
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OperatorLabel2" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SumNumberLabel"
+text = "="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardReceptacle" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_3tk8j")]
+layout_mode = 2
