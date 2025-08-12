@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhfyj55kkj33x"]
+[gd_scene load_steps=3 format=3 uid="uid://dhfyj55kkj33x"]
 
 [ext_resource type="Theme" uid="uid://cgpfhobwe8j8i" path="res://themes/theme_default.tres" id="1_1agq3"]
+[ext_resource type="Script" uid="uid://b4olcgwsd62l" path="res://scenes/ui/card_receptacle/card_receptacle.gd" id="2_sqt5a"]
 
 [node name="CardReceptacle" type="PanelContainer"]
 custom_minimum_size = Vector2(100, 150)
 size_flags_vertical = 4
 theme = ExtResource("1_1agq3")
 theme_type_variation = &"CardReceptacleContainer"
+script = ExtResource("2_sqt5a")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
