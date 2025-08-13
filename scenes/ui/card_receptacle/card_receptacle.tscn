@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhfyj55kkj33x"]
+[gd_scene load_steps=4 format=3 uid="uid://dhfyj55kkj33x"]
 
 [ext_resource type="Theme" uid="uid://cgpfhobwe8j8i" path="res://themes/theme_default.tres" id="1_1agq3"]
 [ext_resource type="Script" uid="uid://b4olcgwsd62l" path="res://scenes/ui/card_receptacle/card_receptacle.gd" id="2_sqt5a"]
+[ext_resource type="Script" uid="uid://b8ajwo40rgra" path="res://scenes/ui/card_receptacle/card_receptacle_interaction.gd" id="3_uejjd"]
 
 [node name="CardReceptacle" type="PanelContainer"]
 custom_minimum_size = Vector2(100, 150)
 size_flags_vertical = 4
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_1agq3")
 theme_type_variation = &"CardReceptacleContainer"
 script = ExtResource("2_sqt5a")
@@ -15,3 +17,8 @@ layout_mode = 2
 theme_type_variation = &"CardReceptacleLabel"
 text = "?"
 horizontal_alignment = 1
+
+[node name="Interaction" type="Node" parent="." node_paths=PackedStringArray("receptacle")]
+unique_name_in_owner = true
+script = ExtResource("3_uejjd")
+receptacle = NodePath("..")

@@ -6,5 +6,7 @@ func _enter_tree() -> void:
 
 	_card_receptacle.theme_type_variation = "CardReceptacleContainerAccepted"
 
-func cycle() -> void:
+	SignalHelper.persist(_interaction.mouse_clicked, _on_mouse_clicked)
+
+func _on_mouse_clicked() -> void:
 	transition_state(CardReceptacle.State.INACTIVE)
