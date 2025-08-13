@@ -13,4 +13,17 @@
 
 ## Credits
 
-* ["Super Pixel" font](https://www.fontspace.com/super-pixel-font-f112028)
+### Fonts
+
+* ["Super Pixel"](https://www.fontspace.com/super-pixel-font-f112028)
+
+### Icons
+
+* [Ankh](https://game-icons.net/1x1/lorc/ankh.html)
+* [Anubis](https://game-icons.net/1x1/delapouite/anubis.html)
+* [Bastet](https://game-icons.net/1x1/delapouite/bastet.html)
+* [Cobra](https://game-icons.net/1x1/delapouite/cobra.html)
+* [Eye of Horus](https://game-icons.net/1x1/delapouite/eye-of-horus.html)
+* [Gold scarab](https://game-icons.net/1x1/lorc/gold-scarab.html)
+* [Horus](https://game-icons.net/1x1/delapouite/horus.html)
+* [Lotus](https://game-icons.net/1x1/lorc/lotus.html)
