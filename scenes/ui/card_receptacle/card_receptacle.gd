@@ -1,5 +1,5 @@
 class_name CardReceptacle
-extends Node
+extends Control
 
 enum State { INACTIVE, WAITING, ACCEPTED }
 

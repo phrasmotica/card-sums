@@ -18,3 +18,10 @@ func transition_state(
 	state_data := CardReceptacleStateData.new(),
 ) -> void:
 	state_transition_requested.emit(new_state, state_data)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("cycle_state_machine"):
+		cycle()
+
+func cycle() -> void:
+	pass
