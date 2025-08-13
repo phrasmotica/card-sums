@@ -1,6 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7tgt44040c01"]
+[gd_scene load_steps=4 format=3 uid="uid://c7tgt44040c01"]
 
 [ext_resource type="Script" uid="uid://cuyngcpyf6dk5" path="res://scenes/cards/card_hand/card_hand.gd" id="1_43wv8"]
+[ext_resource type="PackedScene" uid="uid://dr3hapec4l025" path="res://scenes/cards/card/card.tscn" id="2_itfjh"]
+[ext_resource type="Script" uid="uid://c8f1rtsq7fib6" path="res://scenes/cards/card_hand/card_hand_designer.gd" id="3_ukq0x"]
 
 [node name="CardHand" type="Node2D"]
 script = ExtResource("1_43wv8")
+
+[node name="Designer" type="Node" parent="." node_paths=PackedStringArray("card_pivots")]
+script = ExtResource("3_ukq0x")
+fan_distance = 120.0
+separation_angle = 13.0
+card_pivots = [NodePath("../CardPivot0"), NodePath("../CardPivot1"), NodePath("../CardPivot2"), NodePath("../CardPivot3"), NodePath("../CardPivot4"), NodePath("../CardPivot5")]
+
+[node name="CardPivot0" type="Node2D" parent="."]
+rotation = -0.567232
+
+[node name="Card" parent="CardPivot0" instance=ExtResource("2_itfjh")]
+position = Vector2(0, -120)
+
+[node name="CardPivot1" type="Node2D" parent="."]
+rotation = -0.340339
+
+[node name="Card" parent="CardPivot1" instance=ExtResource("2_itfjh")]
+position = Vector2(0, -120)
+
+[node name="CardPivot2" type="Node2D" parent="."]
+rotation = -0.113446
+
+[node name="Card" parent="CardPivot2" instance=ExtResource("2_itfjh")]
+position = Vector2(0, -120)
+
+[node name="CardPivot3" type="Node2D" parent="."]
+rotation = 0.113446
+
+[node name="Card" parent="CardPivot3" instance=ExtResource("2_itfjh")]
+position = Vector2(0, -120)
+
+[node name="CardPivot4" type="Node2D" parent="."]
+rotation = 0.340339
+
+[node name="Card" parent="CardPivot4" instance=ExtResource("2_itfjh")]
+position = Vector2(0, -120)
+
+[node name="CardPivot5" type="Node2D" parent="."]
+rotation = 0.567232
+
+[node name="Card" parent="CardPivot5" instance=ExtResource("2_itfjh")]
+position = Vector2(0, -120)
