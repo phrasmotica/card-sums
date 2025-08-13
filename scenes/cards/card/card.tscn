@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr3hapec4l025"]
+[gd_scene load_steps=6 format=3 uid="uid://dr3hapec4l025"]
 
 [ext_resource type="Script" uid="uid://d0hedp1pekf3u" path="res://scenes/cards/card/card.gd" id="1_ixa3p"]
 [ext_resource type="Texture2D" uid="uid://0axa4ng2wgki" path="res://assets/sprites/ankh.png" id="1_l2vgw"]
+[ext_resource type="Script" uid="uid://cil4srlg56703" path="res://scenes/cards/card/card_appearance.gd" id="2_wcwcg"]
 
 [sub_resource type="Gradient" id="Gradient_galru"]
 offsets = PackedFloat32Array(1)
@@ -14,6 +15,11 @@ height = 130
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_ixa3p")
+
+[node name="Appearance" type="Node" parent="." node_paths=PackedStringArray("card_icons")]
+unique_name_in_owner = true
+script = ExtResource("2_wcwcg")
+card_icons = [NodePath("../IconSpriteTopLeft"), NodePath("../IconSpriteBottomRight")]
 
 [node name="CardSprite" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_l2vgw")

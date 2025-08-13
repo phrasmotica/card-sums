@@ -24,27 +24,32 @@ rotation = -0.340339
 
 [node name="Card" parent="CardPivot1" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
+icon = 3
 
 [node name="CardPivot2" type="Node2D" parent="."]
 rotation = -0.113446
 
 [node name="Card" parent="CardPivot2" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
+icon = 2
 
 [node name="CardPivot3" type="Node2D" parent="."]
 rotation = 0.113446
 
 [node name="Card" parent="CardPivot3" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
+icon = 5
 
 [node name="CardPivot4" type="Node2D" parent="."]
 rotation = 0.340339
 
 [node name="Card" parent="CardPivot4" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
+icon = 7
 
 [node name="CardPivot5" type="Node2D" parent="."]
 rotation = 0.567232
 
 [node name="Card" parent="CardPivot5" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
+icon = 6

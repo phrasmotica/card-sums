@@ -1,12 +1,28 @@
+@tool
 class_name Card
 extends Node2D
 
 enum State { INACTIVE, HOVERED, DRAGGING }
 
+enum CardIcon { ANKH, ANUBIS, BASTET, COBRA, EYE, HORUS, LOTUS, SCARAB }
+
+@export
+var icon := CardIcon.ANKH:
+	set(value):
+		icon = value
+
+		_refresh()
+
+@onready
+var appearance: CardAppearance = %Appearance
+
 var _state_factory := CardStateFactory.new()
 var _current_state: CardState = null
 
 func _ready() -> void:
+	if not Engine.is_editor_hint():
+		return
+
 	switch_state(Card.State.INACTIVE)
 
 func switch_state(state: State, state_data := CardStateData.new()) -> void:
@@ -23,3 +39,7 @@ func switch_state(state: State, state_data := CardStateData.new()) -> void:
 	_current_state.name = "CardStateMachine: %s" % str(state)
 
 	call_deferred("add_child", _current_state)
+
+func _refresh() -> void:
+	if appearance:
+		appearance.refresh(icon)
