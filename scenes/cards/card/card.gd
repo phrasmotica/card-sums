@@ -20,6 +20,8 @@ var _state_factory := CardStateFactory.new()
 var _current_state: CardState = null
 
 func _ready() -> void:
+	_refresh()
+
 	if not Engine.is_editor_hint():
 		return
 
