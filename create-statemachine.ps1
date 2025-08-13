@@ -5,6 +5,10 @@ param(
 )
 
 function PascalToSnake([string] $Value) {
+	if ([Regex]::Match($Value, '^[A-Z]+$').Success) {
+		return $Value.ToLower()
+	}
+
 	# taken from https://gist.github.com/awakecoding/acc626741704e8885da8892b0ac6ce64
 	return [Regex]::Replace($Value, '(?<=.)(?=[A-Z])', '_').ToLower()
 }
@@ -51,9 +55,13 @@ $baseFilePath = MakePath -RawPath "$ParentDir\$baseDir\$baseFileName"
 
 Write-Host "Writing base file '$baseFileName'..."
 
-$stateEnumStr = [string[]]($InitialStates | % {
+$stateNamesUpper = [string[]]($InitialStates | % {
 	return $_.ToUpper()
-}) -join ", "
+})
+
+$firstStateNameUpper = $stateNamesUpper[0]
+
+$stateEnumStr = $stateNamesUpper -join ", "
 
 [IO.File]::WriteAllLines(
 	$baseFilePath,
@@ -61,7 +69,28 @@ $stateEnumStr = [string[]]($InitialStates | % {
 		"class_name $Name",
 		"extends Node",
 		"",
-		"enum State { $stateEnumStr }"
+		"enum State { $stateEnumStr }",
+		"",
+		"var _state_factory := $($Name)StateFactory.new()",
+		"var _current_state: $($Name)State = null",
+		"",
+		"func _ready() -> void:",
+			"`tswitch_state($($Name).State.$($firstStateNameUpper))",
+		"",
+		"func switch_state(state: State, state_data := $($Name)StateData.new()) -> void:",
+			"`tif _current_state != null:",
+				"`t`t_current_state.queue_free()",
+		"",
+			"`t_current_state = _state_factory.get_fresh_state(state)",
+		"",
+			"`t_current_state.setup(",
+				"`t`tself,",
+				"`t`tstate_data)"
+		"",
+			"`t_current_state.state_transition_requested.connect(switch_state)",
+			"`t_current_state.name = `"$($Name)StateMachine: %s`" % str(state)",
+		"",
+			"`tcall_deferred(`"add_child`", _current_state)"
 	)
 )
 
