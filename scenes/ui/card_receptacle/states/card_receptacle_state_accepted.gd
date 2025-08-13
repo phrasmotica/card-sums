@@ -4,7 +4,7 @@ extends CardReceptacleState
 func _enter_tree() -> void:
 	print("CardReceptacle is now accepted")
 
-	_card_receptacle.theme_type_variation = "CardReceptacleContainerAccepted"
+	_appearance.for_accepted()
 
 	SignalHelper.persist(_interaction.mouse_clicked, _on_mouse_clicked)
 

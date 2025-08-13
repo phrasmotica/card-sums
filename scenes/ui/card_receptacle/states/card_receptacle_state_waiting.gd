@@ -4,7 +4,7 @@ extends CardReceptacleState
 func _enter_tree() -> void:
 	print("CardReceptacle is now waiting")
 
-	_card_receptacle.theme_type_variation = "CardReceptacleContainerWaiting"
+	_appearance.for_waiting()
 
 	SignalHelper.persist(_interaction.mouse_exited, _on_mouse_exited)
 	SignalHelper.persist(_interaction.mouse_clicked, _on_mouse_clicked)

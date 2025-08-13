@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhfyj55kkj33x"]
+[gd_scene load_steps=5 format=3 uid="uid://dhfyj55kkj33x"]
 
 [ext_resource type="Theme" uid="uid://cgpfhobwe8j8i" path="res://themes/theme_default.tres" id="1_1agq3"]
 [ext_resource type="Script" uid="uid://b4olcgwsd62l" path="res://scenes/ui/card_receptacle/card_receptacle.gd" id="2_sqt5a"]
+[ext_resource type="Script" uid="uid://bmql7m0r4o3yc" path="res://scenes/ui/card_receptacle/card_receptacle_appearance.gd" id="3_fhu3y"]
 [ext_resource type="Script" uid="uid://b8ajwo40rgra" path="res://scenes/ui/card_receptacle/card_receptacle_interaction.gd" id="3_uejjd"]
 
 [node name="CardReceptacle" type="PanelContainer"]
@@ -17,6 +18,12 @@ layout_mode = 2
 theme_type_variation = &"CardReceptacleLabel"
 text = "?"
 horizontal_alignment = 1
+
+[node name="Appearance" type="Node" parent="." node_paths=PackedStringArray("receptacle", "label")]
+unique_name_in_owner = true
+script = ExtResource("3_fhu3y")
+receptacle = NodePath("..")
+label = NodePath("../Label")
 
 [node name="Interaction" type="Node" parent="." node_paths=PackedStringArray("receptacle")]
 unique_name_in_owner = true

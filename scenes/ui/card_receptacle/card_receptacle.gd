@@ -4,6 +4,9 @@ extends Control
 enum State { INACTIVE, WAITING, ACCEPTED }
 
 @onready
+var appearance: CardReceptacleAppearance = %Appearance
+
+@onready
 var interaction: CardReceptacleInteraction = %Interaction
 
 var _state_factory := CardReceptacleStateFactory.new()
@@ -21,6 +24,7 @@ func switch_state(state: State, state_data := CardReceptacleStateData.new()) -> 
 	_current_state.setup(
 		self,
 		state_data,
+		appearance,
 		interaction)
 
 	_current_state.state_transition_requested.connect(switch_state)
