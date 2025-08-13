@@ -1,7 +1,10 @@
 param(
 	[string] $Name,
 	[string] $ParentDir,
-	[string[]] $InitialStates = @("Disabled", "Enabled")
+	[string[]] $InitialStates = @("Disabled", "Enabled"),
+
+	[ValidateSet("Node", "Node2D", "Control")]
+	[string] $BaseType = "Node"
 )
 
 function PascalToSnake([string] $Value) {
@@ -34,7 +37,7 @@ function CreateStateFile([string] $StateName) {
 			"extends $($Name)State",
 			"",
 			"func _enter_tree() -> void:"
-				"`tprint(`"$Name is now $($stateNameLower)`")"
+				"`tprint(`"%s is now $($stateNameLower)`" % _$($fieldName).name)"
 		)
 	)
 }
@@ -67,7 +70,7 @@ $stateEnumStr = $stateNamesUpper -join ", "
 	$baseFilePath,
 	[string[]]@(
 		"class_name $Name",
-		"extends Node",
+		"extends $BaseType",
 		"",
 		"enum State { $stateEnumStr }",
 		"",
