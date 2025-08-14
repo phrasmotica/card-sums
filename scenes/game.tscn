@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cov7wqmk6mu1e"]
+[gd_scene load_steps=4 format=3 uid="uid://cov7wqmk6mu1e"]
 
+[ext_resource type="PackedScene" uid="uid://c7tgt44040c01" path="res://scenes/cards/card_hand/card_hand.tscn" id="1_lnu2h"]
 [ext_resource type="Theme" uid="uid://cgpfhobwe8j8i" path="res://themes/theme_default.tres" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://docpaapc65d5v" path="res://scenes/ui/sum_board/sum_board.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node2D"]
 
+[node name="CardHand" parent="." instance=ExtResource("1_lnu2h")]
+position = Vector2(640, 720)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -50
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -13,11 +18,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_uwrxv")
 theme_type_variation = &"DefaultMarginContainer"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="TitleLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
