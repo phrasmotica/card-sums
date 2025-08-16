@@ -28,5 +28,8 @@ func enable() -> void:
 func disable() -> void:
 	pass
 
+func activate() -> void:
+	pass
+
 func deactivate() -> void:
 	pass

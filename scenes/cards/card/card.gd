@@ -23,6 +23,7 @@ var _state_factory := CardStateFactory.new()
 var _current_state: CardState = null
 
 signal hovered
+signal unhovered
 
 func _ready() -> void:
 	_refresh()
@@ -56,12 +57,19 @@ func disable() -> void:
 	if _current_state:
 		_current_state.disable()
 
+func activate() -> void:
+	if _current_state:
+		_current_state.activate()
+
 func deactivate() -> void:
 	if _current_state:
 		_current_state.deactivate()
 
 func emit_hovered() -> void:
 	hovered.emit()
+
+func emit_unhovered() -> void:
+	unhovered.emit()
 
 func _refresh() -> void:
 	if appearance:
