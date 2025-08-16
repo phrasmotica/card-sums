@@ -29,6 +29,7 @@ func _ready() -> void:
 	SignalHelper.persist(CardEvents.card_dropped, _on_card_dropped)
 
 func inject(card_hand: CardHandData, parent: Node2D) -> void:
+	# TODO: do this rendering in a separate script
 	if card_hand:
 		var hand_size := card_hand.cards.size()
 
@@ -119,7 +120,7 @@ func _sort_top_to_bottom(c1: Card, c2: Card) -> bool:
 	# enough for now...
 	return cards.find(c1) > cards.find(c2)
 
-func _on_card_dropped(card: Card) -> void:
-	print("%s adding card %s to hand" % [name, card.name])
-
-	# TODO: add the card to this hand
+func _on_card_dropped(_card: Card) -> void:
+		# TODO: add the card to this hand
+# print("%s adding card %s to hand" % [name, card.name])
+	pass
