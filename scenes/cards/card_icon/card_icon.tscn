@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://js5tnyve4aiv"]
+
+[ext_resource type="Texture2D" uid="uid://0axa4ng2wgki" path="res://assets/sprites/ankh.png" id="1_3jqvk"]
+[ext_resource type="Shader" uid="uid://cpkas1pabslp2" path="res://scenes/cards/card_icon/card_icon.gdshader" id="1_efpak"]
+[ext_resource type="Script" uid="uid://u1nonitalhva" path="res://scenes/cards/card_icon/card_icon.gd" id="2_u278j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rd86s"]
+resource_local_to_scene = true
+shader = ExtResource("1_efpak")
+shader_parameter/icon_colour = Color(1, 1, 1, 1)
+
+[node name="CardIcon" type="Sprite2D"]
+material = SubResource("ShaderMaterial_rd86s")
+texture = ExtResource("1_3jqvk")
+script = ExtResource("2_u278j")

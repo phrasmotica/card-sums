@@ -13,6 +13,13 @@ var icon := CardIcon.ANKH:
 
 		_refresh()
 
+@export
+var colour := Color.WHITE:
+	set(value):
+		colour = value
+
+		_refresh()
+
 @onready
 var appearance: CardAppearance = %Appearance
 
@@ -73,4 +80,4 @@ func emit_unhovered() -> void:
 
 func _refresh() -> void:
 	if appearance:
-		appearance.refresh(icon)
+		appearance.refresh(icon, colour)

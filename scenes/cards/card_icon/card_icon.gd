@@ -1,6 +1,6 @@
 @tool
-class_name CardAppearance
-extends Node
+class_name CardIcon
+extends Sprite2D
 
 var ICONS := {
 	Card.CardIcon.ANKH: preload("res://assets/sprites/ankh.png"),
@@ -14,20 +14,28 @@ var ICONS := {
 }
 
 @export
-var card_sprite: Sprite2D
+var icon := Card.CardIcon.ANKH:
+	set(value):
+		icon = value
+
+		_refresh()
 
 @export
-var card_icons: Array[CardIcon] = []
+var colour := Color.WHITE:
+	set(value):
+		colour = value
 
-var _card_sprite_shader: ShaderUpdater = null
+		_refresh()
+
+var _shader: ShaderUpdater = null
 
 func _ready() -> void:
-	_card_sprite_shader = ShaderUpdater.new(card_sprite.material as ShaderMaterial)
+	_shader = ShaderUpdater.new(material as ShaderMaterial)
 
-func refresh(icon_value: Card.CardIcon, border_colour: Color) -> void:
-	if _card_sprite_shader:
-		_card_sprite_shader.set_color("border_colour", border_colour)
+	_refresh()
 
-	for icon in card_icons:
-		icon.icon = icon_value
-		icon.colour = border_colour
+func _refresh() -> void:
+	texture = ICONS[icon] as Texture2D
+
+	if _shader:
+		_shader.set_color("icon_colour", colour)
