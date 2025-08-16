@@ -10,7 +10,7 @@ var _state_factory := CardHandStateFactory.new()
 var _current_state: CardHandState = null
 
 func _ready() -> void:
-	switch_state(CardHand.State.CLOSED)
+	switch_state(CardHand.State.FANNED)
 
 func switch_state(state: State, state_data := CardHandStateData.new()) -> void:
 	if _current_state != null:

@@ -22,13 +22,15 @@ var interaction: CardInteraction = %Interaction
 var _state_factory := CardStateFactory.new()
 var _current_state: CardState = null
 
+signal hovered
+
 func _ready() -> void:
 	_refresh()
 
 	if Engine.is_editor_hint():
 		return
 
-	switch_state(Card.State.INACTIVE)
+	switch_state(Card.State.DISABLED)
 
 func switch_state(state: State, state_data := CardStateData.new()) -> void:
 	if _current_state != null:
@@ -45,6 +47,21 @@ func switch_state(state: State, state_data := CardStateData.new()) -> void:
 	_current_state.name = "CardStateMachine: %s" % str(state)
 
 	call_deferred("add_child", _current_state)
+
+func enable() -> void:
+	if _current_state:
+		_current_state.enable()
+
+func disable() -> void:
+	if _current_state:
+		_current_state.disable()
+
+func deactivate() -> void:
+	if _current_state:
+		_current_state.deactivate()
+
+func emit_hovered() -> void:
+	hovered.emit()
 
 func _refresh() -> void:
 	if appearance:
