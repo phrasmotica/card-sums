@@ -3,6 +3,9 @@ extends Node2D
 
 enum State { CLOSED, FANNED }
 
+@onready
+var card_manager: CardManager = %CardManager
+
 var _state_factory := CardHandStateFactory.new()
 var _current_state: CardHandState = null
 
@@ -17,7 +20,8 @@ func switch_state(state: State, state_data := CardHandStateData.new()) -> void:
 
 	_current_state.setup(
 		self,
-		state_data)
+		state_data,
+		card_manager)
 
 	_current_state.state_transition_requested.connect(switch_state)
 	_current_state.name = "CardHandStateMachine: %s" % str(state)

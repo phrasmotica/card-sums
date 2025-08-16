@@ -1,55 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7tgt44040c01"]
+[gd_scene load_steps=5 format=3 uid="uid://c7tgt44040c01"]
 
 [ext_resource type="Script" uid="uid://cuyngcpyf6dk5" path="res://scenes/cards/card_hand/card_hand.gd" id="1_43wv8"]
+[ext_resource type="Script" uid="uid://dsym3iwshb84i" path="res://scenes/cards/card_hand/card_manager.gd" id="2_61g3o"]
 [ext_resource type="PackedScene" uid="uid://dr3hapec4l025" path="res://scenes/cards/card/card.tscn" id="2_itfjh"]
 [ext_resource type="Script" uid="uid://c8f1rtsq7fib6" path="res://scenes/cards/card_hand/card_hand_designer.gd" id="3_ukq0x"]
 
 [node name="CardHand" type="Node2D"]
 script = ExtResource("1_43wv8")
 
-[node name="Designer" type="Node" parent="." node_paths=PackedStringArray("card_pivots")]
+[node name="CardManager" type="Node" parent="." node_paths=PackedStringArray("cards")]
+unique_name_in_owner = true
+script = ExtResource("2_61g3o")
+cards = [NodePath("../CardPivot0/Card0"), NodePath("../CardPivot1/Card1"), NodePath("../CardPivot2/Card2"), NodePath("../CardPivot3/Card3"), NodePath("../CardPivot4/Card4"), NodePath("../CardPivot5/Card5")]
+
+[node name="Designer" type="Node" parent="." node_paths=PackedStringArray("card_manager")]
 script = ExtResource("3_ukq0x")
 fan_distance = 120.0
 separation_angle = 13.0
-card_pivots = [NodePath("../CardPivot0"), NodePath("../CardPivot1"), NodePath("../CardPivot2"), NodePath("../CardPivot3"), NodePath("../CardPivot4"), NodePath("../CardPivot5")]
+card_manager = NodePath("../CardManager")
 
 [node name="CardPivot0" type="Node2D" parent="."]
 rotation = -0.567232
 
-[node name="Card" parent="CardPivot0" instance=ExtResource("2_itfjh")]
+[node name="Card0" parent="CardPivot0" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
 
 [node name="CardPivot1" type="Node2D" parent="."]
 rotation = -0.340339
 
-[node name="Card" parent="CardPivot1" instance=ExtResource("2_itfjh")]
+[node name="Card1" parent="CardPivot1" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
 icon = 3
 
 [node name="CardPivot2" type="Node2D" parent="."]
 rotation = -0.113446
 
-[node name="Card" parent="CardPivot2" instance=ExtResource("2_itfjh")]
+[node name="Card2" parent="CardPivot2" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
 icon = 2
 
 [node name="CardPivot3" type="Node2D" parent="."]
 rotation = 0.113446
 
-[node name="Card" parent="CardPivot3" instance=ExtResource("2_itfjh")]
+[node name="Card3" parent="CardPivot3" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
 icon = 5
 
 [node name="CardPivot4" type="Node2D" parent="."]
 rotation = 0.340339
 
-[node name="Card" parent="CardPivot4" instance=ExtResource("2_itfjh")]
+[node name="Card4" parent="CardPivot4" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
 icon = 7
 
 [node name="CardPivot5" type="Node2D" parent="."]
 rotation = 0.567232
 
-[node name="Card" parent="CardPivot5" instance=ExtResource("2_itfjh")]
+[node name="Card5" parent="CardPivot5" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -120)
 icon = 6

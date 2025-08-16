@@ -19,9 +19,14 @@ var separation_angle := 10.0:
 @export_group("Dependencies")
 
 @export
-var card_pivots: Array[Node2D] = []
+var card_manager: CardManager
 
 func _refresh() -> void:
+	var card_pivots: Array[Node2D] = []
+
+	if card_manager:
+		card_pivots = card_manager.get_pivots()
+
 	var half_total_angle := (card_pivots.size() - 1) * separation_angle / 2.0
 
 	for i in card_pivots.size():
