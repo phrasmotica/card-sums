@@ -18,6 +18,8 @@ func _on_mouse_clicked() -> void:
 	transition_state(CardReceptacle.State.ACCEPTED)
 
 func _on_card_dropped(card: Card) -> void:
+	print("%s capturing card %s" % [_card_receptacle.name, card.name])
+
 	var state_data := CardReceptacleStateData \
 		.build() \
 		.with_card(card)

@@ -18,10 +18,15 @@ signal cleanup_finished(count: int)
 func _ready() -> void:
 	_pivots = get_pivots()
 
+	if Engine.is_editor_hint():
+		return
+
 	for c in cards:
 		SignalHelper.persist(c.captured, _on_captured.bind(c))
 		SignalHelper.persist(c.hovered, _on_hovered.bind(c))
 		SignalHelper.persist(c.unhovered, _on_unhovered.bind(c))
+
+	SignalHelper.persist(CardEvents.card_dropped, _on_card_dropped)
 
 func inject(card_hand: CardHandData, parent: Node2D) -> void:
 	if card_hand:
@@ -113,3 +118,8 @@ func _sort_top_to_bottom(c1: Card, c2: Card) -> bool:
 	# the rightmost card is the topmost one. This implementation is good
 	# enough for now...
 	return cards.find(c1) > cards.find(c2)
+
+func _on_card_dropped(card: Card) -> void:
+	print("%s adding card %s to hand" % [name, card.name])
+
+	# TODO: add the card to this hand
