@@ -2,7 +2,7 @@
 class_name CardHand
 extends Node2D
 
-enum State { CLOSED, FANNED }
+enum State { CLOSED, FANNED, PAUSED }
 
 @export
 var card_hand_data: CardHandData:

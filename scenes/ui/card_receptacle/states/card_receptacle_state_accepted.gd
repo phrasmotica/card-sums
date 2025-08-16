@@ -6,7 +6,7 @@ func _enter_tree() -> void:
 
 	_appearance.for_accepted()
 
-	_capture_card()
+	SignalHelper.once_next_frame(_capture_card)
 
 func _capture_card() -> void:
 	var card := _state_data.get_card()

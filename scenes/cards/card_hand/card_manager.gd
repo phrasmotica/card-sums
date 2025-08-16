@@ -13,6 +13,7 @@ var _hovered_cards: Array[Card] = []
 
 var _card_factory := CardFactory.new()
 
+signal dragged(card: Card)
 signal cleanup_finished(count: int)
 
 func _ready() -> void:
@@ -23,10 +24,9 @@ func _ready() -> void:
 
 	for c in cards:
 		SignalHelper.persist(c.captured, _on_captured.bind(c))
+		SignalHelper.persist(c.dragged, dragged.emit.bind(c))
 		SignalHelper.persist(c.hovered, _on_hovered.bind(c))
 		SignalHelper.persist(c.unhovered, _on_unhovered.bind(c))
-
-	SignalHelper.persist(CardEvents.card_dropped, _on_card_dropped)
 
 func inject(card_hand: CardHandData, parent: Node2D) -> void:
 	# TODO: do this rendering in a separate script
@@ -120,7 +120,7 @@ func _sort_top_to_bottom(c1: Card, c2: Card) -> bool:
 	# enough for now...
 	return cards.find(c1) > cards.find(c2)
 
-func _on_card_dropped(_card: Card) -> void:
-		# TODO: add the card to this hand
-# print("%s adding card %s to hand" % [name, card.name])
+func capture_card(_card: Card) -> void:
+	# TODO: add the card to this hand
+	# print("%s adding card %s to hand" % [name, card.name])
 	pass

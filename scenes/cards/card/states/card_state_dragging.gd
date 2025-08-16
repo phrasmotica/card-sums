@@ -22,6 +22,8 @@ func _enter_tree() -> void:
 	_card.global_rotation = FLOATING_ROTATION
 	_card.z_index = FLOATING_Z_INDEX
 
+	_card.emit_dragged()
+
 func _process(_delta: float) -> void:
 	_card.global_position = get_viewport().get_mouse_position()
 
