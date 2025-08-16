@@ -11,7 +11,9 @@ var debug_label: Label
 var _pivots: Array[Node2D] = []
 var _hovered_cards: Array[Card] = []
 
-signal cleanup_finished
+var _card_factory := CardFactory.new()
+
+signal cleanup_finished(count: int)
 
 func _ready() -> void:
 	_pivots = get_pivots()
@@ -21,12 +23,32 @@ func _ready() -> void:
 		SignalHelper.persist(c.hovered, _on_hovered.bind(c))
 		SignalHelper.persist(c.unhovered, _on_unhovered.bind(c))
 
-func inject(card_hand: CardHandData) -> void:
-	for i in cards.size():
-		if not card_hand or i >= card_hand.cards.size():
-			cards[i].card_data = null
-		else:
-			cards[i].card_data = card_hand.cards[i]
+func inject(card_hand: CardHandData, parent: Node2D) -> void:
+	if card_hand:
+		var hand_size := card_hand.cards.size()
+
+		for i in hand_size:
+			if i >= cards.size():
+				var pivot := Node2D.new()
+				pivot.name = "CardPivot%d" % i
+
+				parent.add_child(pivot)
+				pivot.owner = parent
+
+				var new_card := _card_factory.create(card_hand.cards[i], "Card%d" % i)
+				cards.append(new_card)
+
+				pivot.add_child(new_card)
+				new_card.owner = parent
+			else:
+				cards[i].card_data = card_hand.cards[i]
+
+		for p in get_pivots().slice(hand_size):
+			p.queue_free()
+
+		cards = cards.slice(0, hand_size)
+
+	_cleanup()
 
 func get_pivots() -> Array[Node2D]:
 	var pivots: Array[Node2D] = []
@@ -55,7 +77,7 @@ func _cleanup() -> void:
 
 	_pivots = get_pivots()
 
-	cleanup_finished.emit()
+	cleanup_finished.emit(cards.size())
 
 func _on_hovered(card: Card) -> void:
 	_hovered_cards.append(card)

@@ -9,7 +9,7 @@ var fan_distance := 100.0:
 
 		_refresh()
 
-@export_range(5.0, 20.0)
+@export_range(5.0, 40.0)
 var separation_angle := 10.0:
 	set(value):
 		separation_angle = value
@@ -23,7 +23,7 @@ var card_manager: CardManager
 
 func _ready() -> void:
 	if card_manager:
-		SignalHelper.persist(card_manager.cleanup_finished, _refresh)
+		SignalHelper.persist(card_manager.cleanup_finished, _on_cleanup_finished)
 
 func _refresh() -> void:
 	var card_pivots: Array[Node2D] = []
@@ -38,3 +38,6 @@ func _refresh() -> void:
 
 		var card: Card = card_pivots[i].get_child(0)
 		card.position.y = -fan_distance
+
+func _on_cleanup_finished(count: int) -> void:
+	separation_angle = lerpf(5.0, 40.0, ease((10 - count) / 10.0, 2.0))

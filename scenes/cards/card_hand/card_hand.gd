@@ -45,4 +45,4 @@ func switch_state(state: State, state_data := CardHandStateData.new()) -> void:
 
 func _refresh() -> void:
 	if card_manager:
-		card_manager.inject(card_hand_data)
+		card_manager.inject(card_hand_data, self)

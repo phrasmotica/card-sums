@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CardHandData" load_steps=3 format=3 uid="uid://7eqkx4ptcshi"]
+
+[ext_resource type="Script" uid="uid://cxddgdifgmb1y" path="res://scripts/card_data.gd" id="1_0tg2d"]
+[ext_resource type="Script" uid="uid://3qt4hqdj6sbc" path="res://scripts/card_hand_data.gd" id="8_5rhsw"]
+
+[resource]
+script = ExtResource("8_5rhsw")
+cards = Array[ExtResource("1_0tg2d")]([])
+metadata/_custom_type_script = "uid://3qt4hqdj6sbc"
