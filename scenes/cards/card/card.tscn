@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dr3hapec4l025"]
+[gd_scene load_steps=14 format=3 uid="uid://dr3hapec4l025"]
 
 [ext_resource type="Script" uid="uid://d0hedp1pekf3u" path="res://scenes/cards/card/card.gd" id="1_ixa3p"]
+[ext_resource type="Resource" uid="uid://24b7w3xk6x7c" path="res://data/cards/card_ankh_white.tres" id="2_6oag4"]
 [ext_resource type="Script" uid="uid://cil4srlg56703" path="res://scenes/cards/card/card_appearance.gd" id="2_wcwcg"]
 [ext_resource type="Script" uid="uid://bytjvdmo8up3b" path="res://scenes/cards/card/card_interaction.gd" id="3_5g5yc"]
 [ext_resource type="Shader" uid="uid://bafdu5p5dp2ui" path="res://scenes/cards/card/card_sprite.gdshader" id="4_8im30"]
@@ -36,6 +37,7 @@ size = Vector2(160, 240)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_ixa3p")
+card_data = ExtResource("2_6oag4")
 
 [node name="Appearance" type="Node" parent="." node_paths=PackedStringArray("card_sprite", "card_icons")]
 unique_name_in_owner = true
@@ -56,16 +58,19 @@ texture = SubResource("GradientTexture2D_l2vgw")
 material = SubResource("ShaderMaterial_s33tx")
 position = Vector2(-54, -94)
 scale = Vector2(0.3, 0.3)
+card_data = ExtResource("2_6oag4")
 
 [node name="CardIconBottomRight" parent="." instance=ExtResource("5_61ovc")]
 material = SubResource("ShaderMaterial_61ovc")
 position = Vector2(54, 94)
 rotation = 3.14159
 scale = Vector2(0.3, 0.3)
+card_data = ExtResource("2_6oag4")
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("RectangleShape2D_wcwcg")
