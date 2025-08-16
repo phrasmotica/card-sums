@@ -4,6 +4,7 @@ var states: Dictionary
 
 func _init() -> void:
 	states = {
+		Card.State.DISABLED: CardStateDisabled,
 		Card.State.INACTIVE: CardStateInactive,
 		Card.State.HOVERED: CardStateHovered,
 		Card.State.DRAGGING: CardStateDragging,

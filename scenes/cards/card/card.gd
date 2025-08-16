@@ -2,7 +2,7 @@
 class_name Card
 extends Node2D
 
-enum State { INACTIVE, HOVERED, DRAGGING }
+enum State { DISABLED, INACTIVE, HOVERED, DRAGGING }
 
 enum CardIcon { ANKH, ANUBIS, BASTET, COBRA, EYE, HORUS, LOTUS, SCARAB }
 
