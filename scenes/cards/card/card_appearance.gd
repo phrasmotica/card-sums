@@ -2,32 +2,21 @@
 class_name CardAppearance
 extends Node
 
-var ICONS := {
-	Card.CardIcon.ANKH: preload("res://assets/sprites/ankh.png"),
-	Card.CardIcon.ANUBIS: preload("res://assets/sprites/anubis.png"),
-	Card.CardIcon.BASTET: preload("res://assets/sprites/bastet.png"),
-	Card.CardIcon.COBRA: preload("res://assets/sprites/cobra.png"),
-	Card.CardIcon.EYE: preload("res://assets/sprites/eye-of-horus.png"),
-	Card.CardIcon.HORUS: preload("res://assets/sprites/horus.png"),
-	Card.CardIcon.LOTUS: preload("res://assets/sprites/lotus.png"),
-	Card.CardIcon.SCARAB: preload("res://assets/sprites/gold-scarab.png"),
-}
-
 @export
 var card_sprite: Sprite2D
 
 @export
 var card_icons: Array[CardIcon] = []
 
+var _card_constants := CardConstants.new()
 var _card_sprite_shader: ShaderUpdater = null
 
 func _ready() -> void:
 	_card_sprite_shader = ShaderUpdater.new(card_sprite.material as ShaderMaterial)
 
-func refresh(icon_value: Card.CardIcon, border_colour: Color) -> void:
+func refresh(card_data: CardData) -> void:
 	if _card_sprite_shader:
-		_card_sprite_shader.set_color("border_colour", border_colour)
+		_card_sprite_shader.set_color("border_colour", _card_constants.get_colour(card_data))
 
 	for icon in card_icons:
-		icon.icon = icon_value
-		icon.colour = border_colour
+		icon.card_data = card_data

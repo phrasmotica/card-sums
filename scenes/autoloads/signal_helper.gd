@@ -22,3 +22,7 @@ func once_next_frame(callable: Callable) -> void:
 func once_after(delay: float, callable: Callable) -> void:
 	var sig := get_tree().create_timer(delay).timeout
 	once(sig, callable)
+
+func on_changed(resource: Resource, callable: Callable) -> void:
+	if resource:
+		persist(resource.changed, callable)

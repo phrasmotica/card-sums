@@ -4,19 +4,12 @@ extends Node2D
 
 enum State { DISABLED, INACTIVE, HOVERED, DRAGGING }
 
-enum CardIcon { ANKH, ANUBIS, BASTET, COBRA, EYE, HORUS, LOTUS, SCARAB }
-
 @export
-var icon := CardIcon.ANKH:
+var card_data: CardData:
 	set(value):
-		icon = value
+		card_data = value
 
-		_refresh()
-
-@export
-var colour := Color.WHITE:
-	set(value):
-		colour = value
+		SignalHelper.on_changed(card_data, _refresh)
 
 		_refresh()
 
@@ -84,4 +77,4 @@ func emit_captured() -> void:
 
 func _refresh() -> void:
 	if appearance:
-		appearance.refresh(icon, colour)
+		appearance.refresh(card_data)

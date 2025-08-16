@@ -2,31 +2,16 @@
 class_name CardIcon
 extends Sprite2D
 
-var ICONS := {
-	Card.CardIcon.ANKH: preload("res://assets/sprites/ankh.png"),
-	Card.CardIcon.ANUBIS: preload("res://assets/sprites/anubis.png"),
-	Card.CardIcon.BASTET: preload("res://assets/sprites/bastet.png"),
-	Card.CardIcon.COBRA: preload("res://assets/sprites/cobra.png"),
-	Card.CardIcon.EYE: preload("res://assets/sprites/eye-of-horus.png"),
-	Card.CardIcon.HORUS: preload("res://assets/sprites/horus.png"),
-	Card.CardIcon.LOTUS: preload("res://assets/sprites/lotus.png"),
-	Card.CardIcon.SCARAB: preload("res://assets/sprites/gold-scarab.png"),
-}
-
 @export
-var icon := Card.CardIcon.ANKH:
+var card_data: CardData:
 	set(value):
-		icon = value
+		card_data = value
+
+		SignalHelper.on_changed(card_data, _refresh)
 
 		_refresh()
 
-@export
-var colour := Color.WHITE:
-	set(value):
-		colour = value
-
-		_refresh()
-
+var _card_constants := CardConstants.new()
 var _shader: ShaderUpdater = null
 
 func _ready() -> void:
@@ -35,7 +20,7 @@ func _ready() -> void:
 	_refresh()
 
 func _refresh() -> void:
-	texture = ICONS[icon] as Texture2D
+	texture = _card_constants.get_icon(card_data)
 
 	if _shader:
-		_shader.set_color("icon_colour", colour)
+		_shader.set_color("icon_colour", _card_constants.get_colour(card_data))
