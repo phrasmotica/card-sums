@@ -11,7 +11,11 @@ func _enter_tree() -> void:
 
 	SignalHelper.persist(CardEvents.card_dropped, _on_card_dropped)
 
+	CardEvents.emit_receptacle_opened()
+
 func _on_mouse_exited() -> void:
+	CardEvents.emit_receptacle_closed()
+
 	transition_state(CardReceptacle.State.INACTIVE)
 
 func _on_mouse_clicked() -> void:

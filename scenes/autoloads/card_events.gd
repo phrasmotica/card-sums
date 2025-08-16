@@ -1,10 +1,14 @@
 extends Node
 
 signal card_dropped(card: Card)
+signal receptacle_opened
+signal receptacle_closed
 
 func emit_card_dropped(card: Card) -> void:
-	# TODO: create a priority system for capturing a card. By default, a dropped
-	# card should be returned to its hand. However if a card is dropped while
-	# over a receptacle, the receptacle should capture it with greater priority
-	# than the hand...
 	card_dropped.emit(card)
+
+func emit_receptacle_opened() -> void:
+	receptacle_opened.emit()
+
+func emit_receptacle_closed() -> void:
+	receptacle_closed.emit()
