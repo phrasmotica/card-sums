@@ -21,6 +21,13 @@ func _ready() -> void:
 		SignalHelper.persist(c.hovered, _on_hovered.bind(c))
 		SignalHelper.persist(c.unhovered, _on_unhovered.bind(c))
 
+func inject(card_hand: CardHandData) -> void:
+	for i in cards.size():
+		if not card_hand or i >= card_hand.cards.size():
+			cards[i].card_data = null
+		else:
+			cards[i].card_data = card_hand.cards[i]
+
 func get_pivots() -> Array[Node2D]:
 	var pivots: Array[Node2D] = []
 
