@@ -6,9 +6,8 @@
 [ext_resource type="Script" uid="uid://b8ajwo40rgra" path="res://scenes/ui/card_receptacle/card_receptacle_interaction.gd" id="3_uejjd"]
 
 [node name="CardReceptacle" type="PanelContainer"]
-custom_minimum_size = Vector2(100, 150)
+custom_minimum_size = Vector2(180, 260)
 size_flags_vertical = 4
-mouse_default_cursor_shape = 2
 theme = ExtResource("1_1agq3")
 theme_type_variation = &"CardReceptacleContainer"
 script = ExtResource("2_sqt5a")

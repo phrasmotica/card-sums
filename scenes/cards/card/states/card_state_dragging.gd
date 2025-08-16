@@ -30,4 +30,6 @@ func _on_mouse_hold_ended() -> void:
 	_card.global_rotation = _initial_rotation
 	_card.z_index = _initial_z_index
 
+	CardEvents.emit_card_dropped(_card)
+
 	transition_state(Card.State.INACTIVE)
