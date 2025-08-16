@@ -16,8 +16,7 @@ debug_label = NodePath("../DebugLabel")
 
 [node name="Designer" type="Node" parent="." node_paths=PackedStringArray("card_manager")]
 script = ExtResource("3_ukq0x")
-fan_distance = 120.0
-separation_angle = 13.0
+fan_distance = 300.0
 card_manager = NodePath("../CardManager")
 
 [node name="DebugLabel" type="Label" parent="."]
@@ -28,47 +27,47 @@ offset_right = 80.0
 text = "[]"
 
 [node name="CardPivot0" type="Node2D" parent="."]
-rotation = -0.567232
+rotation = -0.436332
 
 [node name="Card0" parent="CardPivot0" instance=ExtResource("2_itfjh")]
-position = Vector2(0, -120)
+position = Vector2(0, -300)
 
 [node name="CardPivot1" type="Node2D" parent="."]
-rotation = -0.340339
+rotation = -0.261799
 
 [node name="Card1" parent="CardPivot1" instance=ExtResource("2_itfjh")]
-position = Vector2(0, -120)
+position = Vector2(0, -300)
 icon = 3
 colour = Color(1, 0, 0, 1)
 
 [node name="CardPivot2" type="Node2D" parent="."]
-rotation = -0.113446
+rotation = -0.0872665
 
 [node name="Card2" parent="CardPivot2" instance=ExtResource("2_itfjh")]
-position = Vector2(0, -120)
+position = Vector2(0, -300)
 icon = 2
 colour = Color(0, 0, 0, 1)
 
 [node name="CardPivot3" type="Node2D" parent="."]
-rotation = 0.113446
+rotation = 0.0872665
 
 [node name="Card3" parent="CardPivot3" instance=ExtResource("2_itfjh")]
-position = Vector2(0, -120)
+position = Vector2(0, -300)
 icon = 5
 colour = Color(1, 1, 0, 1)
 
 [node name="CardPivot4" type="Node2D" parent="."]
-rotation = 0.340339
+rotation = 0.261799
 
 [node name="Card4" parent="CardPivot4" instance=ExtResource("2_itfjh")]
-position = Vector2(0, -120)
+position = Vector2(0, -300)
 icon = 7
 colour = Color(1, 1, 0, 1)
 
 [node name="CardPivot5" type="Node2D" parent="."]
-rotation = 0.567232
+rotation = 0.436332
 
 [node name="Card5" parent="CardPivot5" instance=ExtResource("2_itfjh")]
-position = Vector2(0, -120)
+position = Vector2(0, -300)
 icon = 6
 colour = Color(0, 0, 0, 1)

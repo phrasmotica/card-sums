@@ -18,8 +18,8 @@ colors = PackedColorArray(0.717647, 0.423529, 0.454902, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_l2vgw"]
 gradient = SubResource("Gradient_galru")
-width = 80
-height = 120
+width = 160
+height = 240
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s33tx"]
 resource_local_to_scene = true
@@ -32,7 +32,7 @@ shader = ExtResource("6_6oag4")
 shader_parameter/icon_colour = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcwcg"]
-size = Vector2(80, 120)
+size = Vector2(160, 240)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_ixa3p")
@@ -54,14 +54,14 @@ texture = SubResource("GradientTexture2D_l2vgw")
 
 [node name="CardIconTopLeft" parent="." instance=ExtResource("5_61ovc")]
 material = SubResource("ShaderMaterial_s33tx")
-position = Vector2(-27, -47)
-scale = Vector2(0.15, 0.15)
+position = Vector2(-54, -94)
+scale = Vector2(0.3, 0.3)
 
 [node name="CardIconBottomRight" parent="." instance=ExtResource("5_61ovc")]
 material = SubResource("ShaderMaterial_61ovc")
-position = Vector2(27, 47)
+position = Vector2(54, 94)
 rotation = 3.14159
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.3, 0.3)
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false

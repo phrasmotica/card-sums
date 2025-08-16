@@ -2,7 +2,7 @@
 class_name CardHandDesigner
 extends Node
 
-@export_range(50.0, 200.0)
+@export_range(100.0, 400.0)
 var fan_distance := 100.0:
 	set(value):
 		fan_distance = value

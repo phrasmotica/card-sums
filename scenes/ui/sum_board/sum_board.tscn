@@ -5,6 +5,7 @@
 
 [node name="SumBoard" type="PanelContainer"]
 custom_minimum_size = Vector2(800, 400)
+mouse_filter = 2
 theme = ExtResource("1_m04bp")
 theme_type_variation = &"SumBoardContainer"
 
