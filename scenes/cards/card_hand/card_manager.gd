@@ -8,10 +8,16 @@ var cards: Array[Card] = []
 @export
 var debug_label: Label
 
+var _pivots: Array[Node2D] = []
 var _hovered_cards: Array[Card] = []
 
+signal cleanup_finished
+
 func _ready() -> void:
+	_pivots = get_pivots()
+
 	for c in cards:
+		SignalHelper.persist(c.captured, _on_captured.bind(c))
 		SignalHelper.persist(c.hovered, _on_hovered.bind(c))
 		SignalHelper.persist(c.unhovered, _on_unhovered.bind(c))
 
@@ -22,6 +28,27 @@ func get_pivots() -> Array[Node2D]:
 		pivots.append(c.get_parent() as Node2D)
 
 	return pivots
+
+func _on_captured(card: Card) -> void:
+	_hovered_cards.erase(card)
+	_refresh_hovered_card()
+
+	card.hovered.disconnect(_on_hovered.bind(card))
+	card.unhovered.disconnect(_on_unhovered.bind(card))
+
+	cards.erase(card)
+
+	# do cleanup once the captured card has been fully removed from here
+	SignalHelper.once_next_frame(_cleanup)
+
+func _cleanup() -> void:
+	for p in _pivots:
+		if p.get_child_count() <= 0:
+			p.queue_free()
+
+	_pivots = get_pivots()
+
+	cleanup_finished.emit()
 
 func _on_hovered(card: Card) -> void:
 	_hovered_cards.append(card)

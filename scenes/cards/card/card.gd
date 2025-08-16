@@ -29,6 +29,7 @@ var interaction: CardInteraction = %Interaction
 var _state_factory := CardStateFactory.new()
 var _current_state: CardState = null
 
+signal captured
 signal hovered
 signal unhovered
 
@@ -77,6 +78,9 @@ func emit_hovered() -> void:
 
 func emit_unhovered() -> void:
 	unhovered.emit()
+
+func emit_captured() -> void:
+	captured.emit()
 
 func _refresh() -> void:
 	if appearance:

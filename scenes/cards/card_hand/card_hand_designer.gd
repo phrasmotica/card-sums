@@ -21,6 +21,10 @@ var separation_angle := 10.0:
 @export
 var card_manager: CardManager
 
+func _ready() -> void:
+	if card_manager:
+		SignalHelper.persist(card_manager.cleanup_finished, _refresh)
+
 func _refresh() -> void:
 	var card_pivots: Array[Node2D] = []
 
