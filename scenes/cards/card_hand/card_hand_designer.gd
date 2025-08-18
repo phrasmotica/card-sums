@@ -19,25 +19,15 @@ var separation_angle := 10.0:
 @export_group("Dependencies")
 
 @export
-var card_manager: CardManager
+var renderer: CardRenderer
 
 func _ready() -> void:
-	if card_manager:
-		SignalHelper.persist(card_manager.cleanup_finished, _on_cleanup_finished)
+	if renderer:
+		SignalHelper.persist(renderer.cleanup_finished, _on_cleanup_finished)
 
 func _refresh() -> void:
-	var card_pivots: Array[Node2D] = []
-
-	if card_manager:
-		card_pivots = card_manager.get_pivots()
-
-	var half_total_angle := (card_pivots.size() - 1) * separation_angle / 2.0
-
-	for i in card_pivots.size():
-		card_pivots[i].rotation_degrees = i * separation_angle - half_total_angle
-
-		var card: Card = card_pivots[i].get_child(0)
-		card.position.y = -fan_distance
+	if renderer:
+		renderer.fan_hand(fan_distance, separation_angle)
 
 func _on_cleanup_finished(count: int) -> void:
 	separation_angle = lerpf(5.0, 40.0, ease((10 - count) / 10.0, 2.0))

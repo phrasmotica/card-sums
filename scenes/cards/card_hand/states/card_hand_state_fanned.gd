@@ -7,8 +7,7 @@ func _enter_tree() -> void:
 	SignalHelper.persist(CardEvents.card_dropped, _on_dropped)
 	SignalHelper.persist(CardEvents.receptacle_opened, _on_receptacle_opened)
 
-	for c in _card_manager.cards:
-		c.enable()
+	_card_manager.enable_all_cards()
 
 func _on_dropped(card: Card) -> void:
 	# recapture the card into this hand. The dropped card might have previously

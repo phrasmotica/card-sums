@@ -16,6 +16,9 @@ var card_hand_data: CardHandData:
 @onready
 var card_manager: CardManager = %CardManager
 
+@onready
+var renderer: CardRenderer = %CardRenderer
+
 var _state_factory := CardHandStateFactory.new()
 var _current_state: CardHandState = null
 
@@ -44,5 +47,5 @@ func switch_state(state: State, state_data := CardHandStateData.new()) -> void:
 	call_deferred("add_child", _current_state)
 
 func _refresh() -> void:
-	if card_manager:
-		card_manager.inject(card_hand_data, self)
+	if renderer:
+		renderer.render_hand(card_hand_data, self)

@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dr3hapec4l025" path="res://scenes/cards/card/card.tscn" id="2_itfjh"]
 [ext_resource type="Resource" uid="uid://ms6bpae7xjwm" path="res://data/card_hands/card_hand_example.tres" id="2_jt71e"]
 [ext_resource type="Script" uid="uid://c8f1rtsq7fib6" path="res://scenes/cards/card_hand/card_hand_designer.gd" id="3_ukq0x"]
+[ext_resource type="Script" uid="uid://bl2pk0t7252xb" path="res://scenes/cards/card_hand/card_renderer.gd" id="4_jt71e"]
 [ext_resource type="Resource" uid="uid://dojdwnvy4vdu4" path="res://data/cards/card_cobra_red.tres" id="5_hcw8p"]
-[ext_resource type="Script" uid="uid://d0hedp1pekf3u" path="res://scenes/cards/card/card.gd" id="6_aqf13"]
 [ext_resource type="Resource" uid="uid://b25k4k84vnfmb" path="res://data/cards/card_bastet_black.tres" id="7_6sby6"]
 [ext_resource type="Resource" uid="uid://dubyqek073flw" path="res://data/cards/card_horus_yellow.tres" id="8_jt71e"]
 [ext_resource type="Resource" uid="uid://bd175s50vn18q" path="res://data/cards/card_scarab_yellow.tres" id="9_aqf13"]
@@ -16,17 +16,22 @@
 script = ExtResource("1_43wv8")
 card_hand_data = ExtResource("2_jt71e")
 
-[node name="CardManager" type="Node" parent="." node_paths=PackedStringArray("cards", "debug_label")]
+[node name="CardManager" type="Node" parent="." node_paths=PackedStringArray("renderer")]
 unique_name_in_owner = true
 script = ExtResource("2_61g3o")
+renderer = NodePath("../CardRenderer")
+
+[node name="CardRenderer" type="Node" parent="." node_paths=PackedStringArray("cards", "debug_label")]
+unique_name_in_owner = true
+script = ExtResource("4_jt71e")
 cards = [NodePath("../CardPivot0/Card0"), NodePath("../CardPivot1/Card1"), NodePath("../CardPivot2/Card2"), NodePath("../CardPivot3/Card3"), NodePath("../CardPivot4/Card4"), NodePath("../CardPivot5/Card5")]
 debug_label = NodePath("../DebugLabel")
 
-[node name="Designer" type="Node" parent="." node_paths=PackedStringArray("card_manager")]
+[node name="Designer" type="Node" parent="." node_paths=PackedStringArray("renderer")]
 script = ExtResource("3_ukq0x")
 fan_distance = 300.0
 separation_angle = 10.6
-card_manager = NodePath("../CardManager")
+renderer = NodePath("../CardRenderer")
 
 [node name="DebugLabel" type="Label" parent="."]
 visible = false
@@ -44,39 +49,34 @@ position = Vector2(0, -300)
 [node name="CardPivot1" type="Node2D" parent="."]
 rotation = -0.277507
 
-[node name="Card1" type="Node2D" parent="CardPivot1" instance=ExtResource("2_itfjh")]
+[node name="Card1" parent="CardPivot1" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
-script = ExtResource("6_aqf13")
 card_data = ExtResource("5_hcw8p")
 
 [node name="CardPivot2" type="Node2D" parent="."]
 rotation = -0.0925025
 
-[node name="Card2" type="Node2D" parent="CardPivot2" instance=ExtResource("2_itfjh")]
+[node name="Card2" parent="CardPivot2" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
-script = ExtResource("6_aqf13")
 card_data = ExtResource("7_6sby6")
 
 [node name="CardPivot3" type="Node2D" parent="."]
 rotation = 0.0925025
 
-[node name="Card3" type="Node2D" parent="CardPivot3" instance=ExtResource("2_itfjh")]
+[node name="Card3" parent="CardPivot3" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
-script = ExtResource("6_aqf13")
 card_data = ExtResource("8_jt71e")
 
 [node name="CardPivot4" type="Node2D" parent="."]
 rotation = 0.277507
 
-[node name="Card4" type="Node2D" parent="CardPivot4" instance=ExtResource("2_itfjh")]
+[node name="Card4" parent="CardPivot4" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
-script = ExtResource("6_aqf13")
 card_data = ExtResource("9_aqf13")
 
 [node name="CardPivot5" type="Node2D" parent="."]
 rotation = 0.462512
 
-[node name="Card5" type="Node2D" parent="CardPivot5" instance=ExtResource("2_itfjh")]
+[node name="Card5" parent="CardPivot5" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
-script = ExtResource("6_aqf13")
 card_data = ExtResource("10_u0day")

@@ -7,9 +7,7 @@ func _enter_tree() -> void:
 	SignalHelper.persist(CardEvents.card_dropped, _on_dropped)
 	SignalHelper.persist(CardEvents.receptacle_closed, _on_receptacle_closed)
 
-	for c in _card_manager.cards:
-		c.deactivate()
-		c.disable()
+	_card_manager.disable_all_cards()
 
 func _on_dropped(_card: Card) -> void:
 	_unpause()
