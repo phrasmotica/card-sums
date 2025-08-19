@@ -19,8 +19,12 @@ func _on_dragged(_card: Card) -> void:
 	transition_state(CardHand.State.PAUSED)
 
 func _on_dropped(card: Card) -> void:
+	# notify that the card is changing owners
+	CardEvents.emit_card_moved(card)
+
 	# recapture the card into this hand. The dropped card might have previously
 	# been in a receptacle
+	# TODO: don't do this if the receptacle is waiting...
 	_card_manager.capture_card(card)
 
 func _on_receptacle_opened() -> void:

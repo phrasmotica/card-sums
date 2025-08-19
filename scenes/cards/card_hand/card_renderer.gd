@@ -6,6 +6,9 @@ extends Node
 var cards: Array[Card] = []
 
 @export
+var card_positions: CardPositions
+
+@export
 var pivot_parent: Node2D
 
 @export
@@ -102,9 +105,7 @@ func render_unhovered(card: Card) -> void:
 	_update_hover(_hovered_cards)
 
 func add_card(card: Card) -> void:
-	# TODO: make this index vary if the card has been dragged to a specific
-	# point near the hand...
-	var index := 0
+	var index := card_positions.get_destination_index(cards, card)
 	create_pivot_with_existing_card(card, index)
 
 	cleanup()
