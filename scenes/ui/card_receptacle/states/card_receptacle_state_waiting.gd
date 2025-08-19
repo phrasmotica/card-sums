@@ -13,6 +13,8 @@ func _enter_tree() -> void:
 
 	CardEvents.emit_receptacle_opened()
 
+	_card_receptacle.mouse_filter = Control.MOUSE_FILTER_STOP
+
 func _on_mouse_exited() -> void:
 	CardEvents.emit_receptacle_closed()
 

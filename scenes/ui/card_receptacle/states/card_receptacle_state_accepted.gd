@@ -19,6 +19,7 @@ func _capture_card() -> void:
 
 		card.enable()
 
+		SignalHelper.persist(card.dragged, _on_dragged.bind(card))
 		SignalHelper.persist(card.hovered, _on_hovered.bind(card))
 		SignalHelper.persist(card.unhovered, _on_unhovered.bind(card))
 
@@ -27,6 +28,9 @@ func _capture_card() -> void:
 			func() -> void:
 				_card_receptacle.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		)
+
+func _on_dragged(_card: Card) -> void:
+	transition_state(CardReceptacle.State.WAITING)
 
 func _on_hovered(card: Card) -> void:
 	card.activate()
