@@ -22,13 +22,11 @@ func _ready() -> void:
 func _on_captured(card: Card) -> void:
 	renderer.render_captured(card)
 
+	card.dragged.disconnect(_on_dragged.bind(card))
 	card.hovered.disconnect(_on_hovered.bind(card))
 	card.unhovered.disconnect(_on_unhovered.bind(card))
 
 func _on_dragged(card: Card) -> void:
-	# TODO: prevent other cards from being activated while a card is being
-	# dragged. Also, break this script apart... plenty of stuff in here should
-	# be handled by the state machine instead
 	dragged.emit(card)
 
 func _on_hovered(card: Card) -> void:
@@ -42,6 +40,8 @@ func enable_all_cards() -> void:
 		c.enable()
 
 func disable_all_cards() -> void:
+	renderer.forget_hovered_cards()
+
 	for c in renderer.cards:
 		c.deactivate()
 		c.disable()

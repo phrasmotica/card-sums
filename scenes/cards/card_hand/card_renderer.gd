@@ -56,6 +56,10 @@ func fan_hand(fan_distance: float, separation_angle: float) -> void:
 		var card: Card = card_pivots[i].get_child(0)
 		card.position.y = -fan_distance
 
+func forget_hovered_cards() -> void:
+	_hovered_cards.clear()
+	_update_hover(_hovered_cards)
+
 func render_hovered(card: Card) -> void:
 	_hovered_cards.append(card)
 	_update_hover(_hovered_cards)
