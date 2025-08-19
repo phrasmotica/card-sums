@@ -8,6 +8,7 @@ func _enter_tree() -> void:
 	SignalHelper.persist(_interaction.mouse_exited, _on_mouse_exited)
 
 	_card.scale = Vector2.ONE
+	_card.z_index = 0
 
 func _on_mouse_entered() -> void:
 	_card.emit_hovered()

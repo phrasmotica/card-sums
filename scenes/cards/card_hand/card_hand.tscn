@@ -21,10 +21,11 @@ unique_name_in_owner = true
 script = ExtResource("2_61g3o")
 renderer = NodePath("../CardRenderer")
 
-[node name="CardRenderer" type="Node" parent="." node_paths=PackedStringArray("cards", "debug_label")]
+[node name="CardRenderer" type="Node" parent="." node_paths=PackedStringArray("cards", "pivot_parent", "debug_label")]
 unique_name_in_owner = true
 script = ExtResource("4_jt71e")
-cards = [NodePath("../CardPivot0/Card0"), NodePath("../CardPivot1/Card1"), NodePath("../CardPivot2/Card2"), NodePath("../CardPivot3/Card3"), NodePath("../CardPivot4/Card4"), NodePath("../CardPivot5/Card5")]
+cards = [NodePath("../PivotParent/CardPivot0/Card0"), NodePath("../PivotParent/CardPivot1/Card1"), NodePath("../PivotParent/CardPivot2/Card2"), NodePath("../PivotParent/CardPivot3/Card3"), NodePath("../PivotParent/CardPivot4/Card4"), NodePath("../PivotParent/CardPivot5/Card5")]
+pivot_parent = NodePath("../PivotParent")
 debug_label = NodePath("../DebugLabel")
 
 [node name="Designer" type="Node" parent="." node_paths=PackedStringArray("renderer")]
@@ -40,43 +41,45 @@ offset_top = -23.0
 offset_right = 80.0
 text = "[]"
 
-[node name="CardPivot0" type="Node2D" parent="."]
+[node name="PivotParent" type="Node2D" parent="."]
+
+[node name="CardPivot0" type="Node2D" parent="PivotParent"]
 rotation = -0.462512
 
-[node name="Card0" parent="CardPivot0" instance=ExtResource("2_itfjh")]
+[node name="Card0" parent="PivotParent/CardPivot0" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
 
-[node name="CardPivot1" type="Node2D" parent="."]
+[node name="CardPivot1" type="Node2D" parent="PivotParent"]
 rotation = -0.277507
 
-[node name="Card1" parent="CardPivot1" instance=ExtResource("2_itfjh")]
+[node name="Card1" parent="PivotParent/CardPivot1" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
 card_data = ExtResource("5_hcw8p")
 
-[node name="CardPivot2" type="Node2D" parent="."]
+[node name="CardPivot2" type="Node2D" parent="PivotParent"]
 rotation = -0.0925025
 
-[node name="Card2" parent="CardPivot2" instance=ExtResource("2_itfjh")]
+[node name="Card2" parent="PivotParent/CardPivot2" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
 card_data = ExtResource("7_6sby6")
 
-[node name="CardPivot3" type="Node2D" parent="."]
+[node name="CardPivot3" type="Node2D" parent="PivotParent"]
 rotation = 0.0925025
 
-[node name="Card3" parent="CardPivot3" instance=ExtResource("2_itfjh")]
+[node name="Card3" parent="PivotParent/CardPivot3" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
 card_data = ExtResource("8_jt71e")
 
-[node name="CardPivot4" type="Node2D" parent="."]
+[node name="CardPivot4" type="Node2D" parent="PivotParent"]
 rotation = 0.277507
 
-[node name="Card4" parent="CardPivot4" instance=ExtResource("2_itfjh")]
+[node name="Card4" parent="PivotParent/CardPivot4" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
 card_data = ExtResource("9_aqf13")
 
-[node name="CardPivot5" type="Node2D" parent="."]
+[node name="CardPivot5" type="Node2D" parent="PivotParent"]
 rotation = 0.462512
 
-[node name="Card5" parent="CardPivot5" instance=ExtResource("2_itfjh")]
+[node name="Card5" parent="PivotParent/CardPivot5" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
 card_data = ExtResource("10_u0day")

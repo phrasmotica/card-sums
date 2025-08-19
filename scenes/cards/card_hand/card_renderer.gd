@@ -6,6 +6,9 @@ extends Node
 var cards: Array[Card] = []
 
 @export
+var pivot_parent: Node2D
+
+@export
 var debug_label: Label
 
 var _card_factory := CardFactory.new()
@@ -16,27 +19,23 @@ var _pivots: Array[Node2D] = []
 signal cleanup_finished(count: int)
 
 func _ready() -> void:
+	assert(pivot_parent)
+
 	_pivots = get_pivots()
 
-func render_hand(card_hand: CardHandData, parent: Node2D) -> void:
+func render_hand(card_hand: CardHandData) -> void:
 	if card_hand:
-		var hand_size := card_hand.cards.size()
+		render_cards(card_hand.cards)
+
+func render_cards(cards_data: Array[CardData]) -> void:
+	if cards_data.size() > 0:
+		var hand_size := cards_data.size()
 
 		for i in hand_size:
 			if i >= cards.size():
-				var pivot := Node2D.new()
-				pivot.name = "CardPivot%d" % i
-
-				parent.add_child(pivot)
-				pivot.owner = parent
-
-				var new_card := _card_factory.create(card_hand.cards[i], "Card%d" % i)
-				cards.append(new_card)
-
-				pivot.add_child(new_card)
-				new_card.owner = parent
+				create_pivot_with_new_card(cards_data, i)
 			else:
-				cards[i].card_data = card_hand.cards[i]
+				cards[i].card_data = cards_data[i]
 
 		for p in get_pivots().slice(hand_size):
 			p.queue_free()
@@ -44,6 +43,40 @@ func render_hand(card_hand: CardHandData, parent: Node2D) -> void:
 		cards = cards.slice(0, hand_size)
 
 	cleanup()
+
+func create_pivot(index: int) -> Node2D:
+	var pivot := Node2D.new()
+	pivot.name = "CardPivot%d" % index
+
+	pivot_parent.add_child(pivot)
+	pivot_parent.move_child(pivot, index)
+
+	pivot.owner = pivot_parent
+
+	return pivot
+
+func create_pivot_with_new_card(
+	cards_data: Array[CardData],
+	index: int,
+) -> void:
+	var pivot := create_pivot(index)
+
+	var new_card := _card_factory.create(cards_data[index], "Card%d" % index)
+	cards.append(new_card)
+
+	pivot.add_child(new_card)
+	new_card.owner = pivot_parent
+
+func create_pivot_with_existing_card(
+	card: Card,
+	index: int,
+) -> void:
+	var pivot := create_pivot(index)
+
+	cards.insert(index, card)
+
+	card.reparent(pivot)
+	card.owner = pivot_parent
 
 func fan_hand(fan_distance: float, separation_angle: float) -> void:
 	var card_pivots := get_pivots()
@@ -54,7 +87,7 @@ func fan_hand(fan_distance: float, separation_angle: float) -> void:
 		card_pivots[i].rotation_degrees = i * separation_angle - half_total_angle
 
 		var card: Card = card_pivots[i].get_child(0)
-		card.position.y = -fan_distance
+		card.position = fan_distance * Vector2.UP
 
 func forget_hovered_cards() -> void:
 	_hovered_cards.clear()
@@ -68,13 +101,21 @@ func render_unhovered(card: Card) -> void:
 	_hovered_cards.erase(card)
 	_update_hover(_hovered_cards)
 
-func render_captured(card: Card) -> void:
+func add_card(card: Card) -> void:
+	# TODO: make this index vary if the card has been dragged to a specific
+	# point near the hand...
+	var index := 0
+	create_pivot_with_existing_card(card, index)
+
+	cleanup()
+
+func remove_card(card: Card) -> void:
 	_hovered_cards.erase(card)
 	_update_hover(_hovered_cards)
 
 	cards.erase(card)
 
-	# do cleanup once the captured card has been fully removed from here
+	# do cleanup once the card has been fully removed
 	SignalHelper.once_next_frame(cleanup)
 
 func _update_hover(hovered_cards: Array[Card]) -> void:

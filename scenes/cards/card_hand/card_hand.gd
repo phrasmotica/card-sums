@@ -39,7 +39,8 @@ func switch_state(state: State, state_data := CardHandStateData.new()) -> void:
 	_current_state.setup(
 		self,
 		state_data,
-		card_manager)
+		card_manager,
+		renderer)
 
 	_current_state.state_transition_requested.connect(switch_state)
 	_current_state.name = "CardHandStateMachine: %s" % str(state)
@@ -47,5 +48,5 @@ func switch_state(state: State, state_data := CardHandStateData.new()) -> void:
 	call_deferred("add_child", _current_state)
 
 func _refresh() -> void:
-	if renderer:
-		renderer.render_hand(card_hand_data, self)
+	if _current_state:
+		_current_state.refresh_appearance(card_hand_data)

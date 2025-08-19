@@ -5,6 +5,7 @@ extends Node
 @export
 var renderer: CardRenderer
 
+signal captured(card: Card)
 signal dragged(card: Card)
 
 func _ready() -> void:
@@ -20,7 +21,7 @@ func _ready() -> void:
 		SignalHelper.persist(c.unhovered, _on_unhovered.bind(c))
 
 func _on_captured(card: Card) -> void:
-	renderer.render_captured(card)
+	renderer.remove_card(card)
 
 	card.dragged.disconnect(_on_dragged.bind(card))
 	card.hovered.disconnect(_on_hovered.bind(card))
@@ -49,4 +50,4 @@ func disable_all_cards() -> void:
 func capture_card(card: Card) -> void:
 	print("%s adding card %s to hand" % [name, card.name])
 
-	# TODO: recapture if the card isn't part of this hand
+	captured.emit(card)
