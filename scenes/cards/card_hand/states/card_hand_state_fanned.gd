@@ -24,7 +24,9 @@ func _on_dropped(card: Card) -> void:
 
 	# recapture the card into this hand. The dropped card might have previously
 	# been in a receptacle
-	# TODO: don't do this if the receptacle is waiting...
+	# TODO: only do this in a new state, which is entered when the mouse is
+	# holding a card nearby... show a gap (empty pivot!) where the card would
+	# end up after being dropped
 	_card_manager.capture_card(card)
 
 func _on_receptacle_opened() -> void:

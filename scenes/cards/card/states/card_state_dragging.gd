@@ -29,7 +29,6 @@ func _enter_tree() -> void:
 	_card.emit_dragged()
 
 func _process(_delta: float) -> void:
-	# TODO: show a gap in the card hand where the card would end up after being dropped...
 	_card.global_position = get_viewport().get_mouse_position()
 
 func _on_mouse_hold_ended() -> void:
