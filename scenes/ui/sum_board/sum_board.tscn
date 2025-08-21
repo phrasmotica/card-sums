@@ -11,11 +11,13 @@ theme_type_variation = &"SumBoardContainer"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme_type_variation = &"DefaultMarginContainer"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 
 [node name="NumberLabel0" type="Label" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 150)
