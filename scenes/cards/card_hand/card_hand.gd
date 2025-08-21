@@ -2,7 +2,7 @@
 class_name CardHand
 extends Node2D
 
-enum State { CLOSED, FANNED, PAUSED }
+enum State { CLOSED, FANNED, PAUSED, WAITING }
 
 @export
 var card_hand_data: CardHandData:
@@ -12,6 +12,9 @@ var card_hand_data: CardHandData:
 		SignalHelper.on_changed(card_hand_data, _refresh)
 
 		_refresh()
+
+@onready
+var interaction: CardHandInteraction = %Interaction
 
 @onready
 var card_manager: CardManager = %CardManager
@@ -39,6 +42,7 @@ func switch_state(state: State, state_data := CardHandStateData.new()) -> void:
 	_current_state.setup(
 		self,
 		state_data,
+		interaction,
 		card_manager,
 		renderer)
 

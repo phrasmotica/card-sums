@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7tgt44040c01"]
+[gd_scene load_steps=15 format=3 uid="uid://c7tgt44040c01"]
 
 [ext_resource type="Script" uid="uid://cuyngcpyf6dk5" path="res://scenes/cards/card_hand/card_hand.gd" id="1_43wv8"]
 [ext_resource type="Script" uid="uid://dsym3iwshb84i" path="res://scenes/cards/card_hand/card_manager.gd" id="2_61g3o"]
@@ -9,9 +9,13 @@
 [ext_resource type="Script" uid="uid://bl2pk0t7252xb" path="res://scenes/cards/card_hand/card_renderer.gd" id="4_jt71e"]
 [ext_resource type="Resource" uid="uid://dojdwnvy4vdu4" path="res://data/cards/card_cobra_red.tres" id="5_hcw8p"]
 [ext_resource type="Resource" uid="uid://b25k4k84vnfmb" path="res://data/cards/card_bastet_black.tres" id="7_6sby6"]
+[ext_resource type="Script" uid="uid://d05e8nley6dkb" path="res://scenes/cards/card_hand/card_hand_interaction.gd" id="7_u0day"]
 [ext_resource type="Resource" uid="uid://dubyqek073flw" path="res://data/cards/card_horus_yellow.tres" id="8_jt71e"]
 [ext_resource type="Resource" uid="uid://bd175s50vn18q" path="res://data/cards/card_scarab_yellow.tres" id="9_aqf13"]
 [ext_resource type="Resource" uid="uid://bfo6xlejbu3oe" path="res://data/cards/card_lotus_black.tres" id="10_u0day"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqf13"]
+size = Vector2(500, 140)
 
 [node name="CardHand" type="Node2D"]
 script = ExtResource("1_43wv8")
@@ -39,6 +43,11 @@ script = ExtResource("3_ukq0x")
 fan_distance = 300.0
 separation_angle = 10.6
 renderer = NodePath("../CardRenderer")
+
+[node name="Interaction" type="Node" parent="." node_paths=PackedStringArray("waiting_area")]
+unique_name_in_owner = true
+script = ExtResource("7_u0day")
+waiting_area = NodePath("../WaitingArea")
 
 [node name="DebugLabel" type="Label" parent="."]
 visible = false
@@ -89,3 +98,11 @@ rotation = 0.462512
 [node name="Card5" parent="PivotParent/CardPivot5" instance=ExtResource("2_itfjh")]
 position = Vector2(0, -300)
 card_data = ExtResource("10_u0day")
+
+[node name="WaitingArea" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaitingArea"]
+position = Vector2(0, -420)
+shape = SubResource("RectangleShape2D_aqf13")

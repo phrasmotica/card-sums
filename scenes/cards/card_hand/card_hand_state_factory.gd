@@ -7,6 +7,7 @@ func _init() -> void:
 		CardHand.State.CLOSED: CardHandStateClosed,
 		CardHand.State.FANNED: CardHandStateFanned,
 		CardHand.State.PAUSED: CardHandStatePaused,
+		CardHand.State.WAITING: CardHandStateWaiting,
 	}
 
 func get_fresh_state(state: CardHand.State) -> CardHandState:

@@ -2,6 +2,8 @@
 class_name CardRenderer
 extends Node
 
+const RAISE_DISTANCE := 100.0
+
 @export
 var cards: Array[Card] = []
 
@@ -18,6 +20,7 @@ var _card_factory := CardFactory.new()
 
 var _hovered_cards: Array[Card] = []
 var _pivots: Array[Node2D] = []
+var _original_position := Vector2.ZERO
 
 signal cleanup_finished(count: int)
 
@@ -25,6 +28,7 @@ func _ready() -> void:
 	assert(pivot_parent)
 
 	_pivots = get_pivots()
+	_original_position = pivot_parent.position
 
 func render_hand(card_hand: CardHandData) -> void:
 	if card_hand:
@@ -91,6 +95,12 @@ func fan_hand(fan_distance: float, separation_angle: float) -> void:
 
 		var card: Card = card_pivots[i].get_child(0)
 		card.position = fan_distance * Vector2.UP
+
+func cards_down() -> void:
+	pivot_parent.position = _original_position
+
+func cards_up() -> void:
+	pivot_parent.position = _original_position + RAISE_DISTANCE * Vector2.UP
 
 func forget_hovered_cards() -> void:
 	_hovered_cards.clear()
