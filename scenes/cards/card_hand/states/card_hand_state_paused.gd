@@ -16,7 +16,8 @@ func _enter_tree() -> void:
 	_card_manager.disable_all_cards()
 
 func _on_waiting_area_entered() -> void:
-	transition_state(CardHand.State.WAITING)
+	if not _state_data.get_is_dragging():
+		transition_state(CardHand.State.WAITING)
 
 func _on_dropped(_card: Card) -> void:
 	_unpause()

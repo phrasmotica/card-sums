@@ -17,7 +17,10 @@ func _on_captured(card: Card) -> void:
 	_card_renderer.add_card(card)
 
 func _on_dragged(_card: Card) -> void:
-	transition_state(CardHand.State.PAUSED)
+	var state_data := CardHandStateData.build() \
+		.with_is_dragging(true)
+
+	transition_state(CardHand.State.PAUSED, state_data)
 
 func _on_receptacle_opened() -> void:
 	transition_state(CardHand.State.PAUSED)
