@@ -29,8 +29,13 @@ func _capture_card() -> void:
 				_card_receptacle.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		)
 
-func _on_dragged(_card: Card) -> void:
-	transition_state(CardReceptacle.State.WAITING)
+func _on_dragged(card: Card) -> void:
+	CardEvents.emit_card_dragged(card)
+
+	var state_data := CardReceptacleStateData.build() \
+		.with_card(card)
+
+	transition_state(CardReceptacle.State.WAITING, state_data)
 
 func _on_hovered(card: Card) -> void:
 	card.activate()
