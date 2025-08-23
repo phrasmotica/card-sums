@@ -17,7 +17,7 @@ func _enter_tree() -> void:
 	_card_manager.disable_all_cards()
 
 func _on_waiting_area_exited() -> void:
-	transition_state(CardHand.State.FANNED)
+	transition_state(CardHand.State.PAUSED)
 
 func _on_dropped(card: Card) -> void:
 	# notify that the card is changing owners

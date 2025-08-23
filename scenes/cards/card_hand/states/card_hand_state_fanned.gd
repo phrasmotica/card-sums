@@ -6,22 +6,12 @@ func _enter_tree() -> void:
 
 	_interaction.waiting_area.input_pickable = true
 
-	_card_renderer.cards_down()
-
-	SignalHelper.persist(
-		_interaction.waiting_area_entered,
-		_on_waiting_area_entered)
-
 	SignalHelper.persist(_card_manager.captured, _on_captured)
 	SignalHelper.persist(_card_manager.dragged, _on_dragged)
 
 	SignalHelper.persist(CardEvents.receptacle_opened, _on_receptacle_opened)
 
 	_card_manager.enable_all_cards()
-
-func _on_waiting_area_entered() -> void:
-	# TODO: transition only when the mouse is also dragging a card...
-	transition_state(CardHand.State.WAITING)
 
 func _on_captured(card: Card) -> void:
 	_card_renderer.add_card(card)

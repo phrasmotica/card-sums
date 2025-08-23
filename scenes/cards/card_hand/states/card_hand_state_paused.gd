@@ -4,12 +4,19 @@ extends CardHandState
 func _enter_tree() -> void:
 	print("%s is now paused" % _card_hand.name)
 
-	_interaction.waiting_area.input_pickable = false
+	_card_renderer.cards_down()
+
+	SignalHelper.persist(
+		_interaction.waiting_area_entered,
+		_on_waiting_area_entered)
 
 	SignalHelper.persist(CardEvents.card_dropped, _on_dropped)
 	SignalHelper.persist(CardEvents.receptacle_closed, _on_receptacle_closed)
 
 	_card_manager.disable_all_cards()
+
+func _on_waiting_area_entered() -> void:
+	transition_state(CardHand.State.WAITING)
 
 func _on_dropped(_card: Card) -> void:
 	_unpause()
