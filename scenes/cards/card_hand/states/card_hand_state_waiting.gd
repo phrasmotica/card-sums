@@ -28,3 +28,5 @@ func _on_dropped(card: Card) -> void:
 	# TODO: show a gap (empty pivot!) where the card would
 	# end up after being dropped
 	_card_manager.capture_card(card)
+
+	transition_state(CardHand.State.FANNED)
