@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dr3hapec4l025"]
+[gd_scene load_steps=15 format=3 uid="uid://dr3hapec4l025"]
 
 [ext_resource type="Script" uid="uid://d0hedp1pekf3u" path="res://scenes/cards/card/card.gd" id="1_ixa3p"]
 [ext_resource type="Resource" uid="uid://24b7w3xk6x7c" path="res://data/cards/card_ankh_white.tres" id="2_6oag4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://bafdu5p5dp2ui" path="res://scenes/cards/card/card_sprite.gdshader" id="4_8im30"]
 [ext_resource type="PackedScene" uid="uid://js5tnyve4aiv" path="res://scenes/cards/card_icon/card_icon.tscn" id="5_61ovc"]
 [ext_resource type="Shader" uid="uid://cpkas1pabslp2" path="res://scenes/cards/card_icon/card_icon.gdshader" id="6_6oag4"]
+[ext_resource type="PackedScene" uid="uid://cb2hjj7f5x5vb" path="res://scenes/debug/state_machine_debug.tscn" id="8_s33tx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8im30"]
 resource_local_to_scene = true
@@ -74,3 +75,10 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 shape = SubResource("RectangleShape2D_wcwcg")
+
+[node name="StateMachineDebug" parent="." instance=ExtResource("8_s33tx")]
+unique_name_in_owner = true
+offset_left = -80.0
+offset_top = -120.0
+offset_right = 80.0
+offset_bottom = 120.0

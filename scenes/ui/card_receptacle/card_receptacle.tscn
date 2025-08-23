@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhfyj55kkj33x"]
+[gd_scene load_steps=6 format=3 uid="uid://dhfyj55kkj33x"]
 
 [ext_resource type="Theme" uid="uid://cgpfhobwe8j8i" path="res://themes/theme_default.tres" id="1_1agq3"]
 [ext_resource type="Script" uid="uid://b4olcgwsd62l" path="res://scenes/ui/card_receptacle/card_receptacle.gd" id="2_sqt5a"]
 [ext_resource type="Script" uid="uid://bmql7m0r4o3yc" path="res://scenes/ui/card_receptacle/card_receptacle_appearance.gd" id="3_fhu3y"]
 [ext_resource type="Script" uid="uid://b8ajwo40rgra" path="res://scenes/ui/card_receptacle/card_receptacle_interaction.gd" id="3_uejjd"]
+[ext_resource type="PackedScene" uid="uid://cb2hjj7f5x5vb" path="res://scenes/debug/state_machine_debug.tscn" id="5_ko8dw"]
 
 [node name="CardReceptacle" type="PanelContainer"]
 custom_minimum_size = Vector2(180, 260)
@@ -28,3 +29,7 @@ label = NodePath("../Label")
 unique_name_in_owner = true
 script = ExtResource("3_uejjd")
 receptacle = NodePath("..")
+
+[node name="StateMachineDebug" parent="." instance=ExtResource("5_ko8dw")]
+unique_name_in_owner = true
+layout_mode = 2

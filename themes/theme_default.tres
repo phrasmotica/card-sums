@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cgpfhobwe8j8i"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cgpfhobwe8j8i"]
 
+[ext_resource type="SystemFont" uid="uid://dvqhdyx10qss6" path="res://themes/font_default.tres" id="1_8whmr"]
 [ext_resource type="FontFile" uid="uid://b6p2iboxgwjr8" path="res://assets/fonts/SuperPixel-m2L8j.ttf" id="1_yll3u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8whmr"]
@@ -37,16 +38,12 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="SystemFont" id="SystemFont_8whmr"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yll3u"]
 bg_color = Color(0.384174, 0.63354, 0.783907, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-
-[sub_resource type="SystemFont" id="SystemFont_yll3u"]
 
 [resource]
 default_font = ExtResource("1_yll3u")
@@ -58,7 +55,9 @@ CardReceptacleContainerWaiting/base_type = &"PanelContainer"
 CardReceptacleContainerWaiting/styles/panel = SubResource("StyleBoxFlat_oh3td")
 CardReceptacleLabel/base_type = &"Label"
 CardReceptacleLabel/font_sizes/font_size = 64
-CardReceptacleLabel/fonts/font = SubResource("SystemFont_8whmr")
+CardReceptacleLabel/fonts/font = ExtResource("1_8whmr")
+DebugLabel/base_type = &"Label"
+DebugLabel/fonts/font = ExtResource("1_8whmr")
 DefaultMarginContainer/base_type = &"MarginContainer"
 DefaultMarginContainer/constants/margin_bottom = 20
 DefaultMarginContainer/constants/margin_left = 20
@@ -68,6 +67,6 @@ SumBoardContainer/base_type = &"PanelContainer"
 SumBoardContainer/styles/panel = SubResource("StyleBoxFlat_yll3u")
 SumNumberLabel/base_type = &"Label"
 SumNumberLabel/font_sizes/font_size = 64
-SumNumberLabel/fonts/font = SubResource("SystemFont_yll3u")
+SumNumberLabel/fonts/font = ExtResource("1_8whmr")
 TitleLabel/base_type = &"Label"
 TitleLabel/font_sizes/font_size = 96

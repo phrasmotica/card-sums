@@ -19,6 +19,9 @@ var appearance: CardAppearance = %Appearance
 @onready
 var interaction: CardInteraction = %Interaction
 
+@onready
+var state_machine_debug: StateMachineDebug = %StateMachineDebug
+
 var _state_factory := CardStateFactory.new()
 var _current_state: CardState = null
 
@@ -50,6 +53,8 @@ func switch_state(state: State, state_data := CardStateData.new()) -> void:
 	_current_state.name = "CardStateMachine: %s" % str(state)
 
 	call_deferred("add_child", _current_state)
+
+	state_machine_debug.update_text(State.find_key(state) as String, state as int)
 
 func enable() -> void:
 	if _current_state:

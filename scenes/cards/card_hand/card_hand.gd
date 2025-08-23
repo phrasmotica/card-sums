@@ -22,6 +22,9 @@ var card_manager: CardManager = %CardManager
 @onready
 var renderer: CardRenderer = %CardRenderer
 
+@onready
+var state_machine_debug: StateMachineDebug = %StateMachineDebug
+
 var _state_factory := CardHandStateFactory.new()
 var _current_state: CardHandState = null
 
@@ -50,6 +53,8 @@ func switch_state(state: State, state_data := CardHandStateData.new()) -> void:
 	_current_state.name = "CardHandStateMachine: %s" % str(state)
 
 	call_deferred("add_child", _current_state)
+
+	state_machine_debug.update_text(State.find_key(state) as String, state as int)
 
 func _refresh() -> void:
 	if _current_state:

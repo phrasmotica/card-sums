@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb2hjj7f5x5vb"]
+
+[ext_resource type="Script" uid="uid://6gvaisurv2hc" path="res://scenes/debug/state_machine_debug.gd" id="1_2u05y"]
+
+[node name="StateMachineDebug" type="VBoxContainer"]
+z_index = 4096
+custom_minimum_size = Vector2(150, 60)
+mouse_filter = 2
+script = ExtResource("1_2u05y")
+
+[node name="StateLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"DebugLabel"
+text = "StateName (-1)"

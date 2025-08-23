@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c7tgt44040c01"]
+[gd_scene load_steps=16 format=3 uid="uid://c7tgt44040c01"]
 
 [ext_resource type="Script" uid="uid://cuyngcpyf6dk5" path="res://scenes/cards/card_hand/card_hand.gd" id="1_43wv8"]
 [ext_resource type="Script" uid="uid://dsym3iwshb84i" path="res://scenes/cards/card_hand/card_manager.gd" id="2_61g3o"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://dubyqek073flw" path="res://data/cards/card_horus_yellow.tres" id="8_jt71e"]
 [ext_resource type="Resource" uid="uid://bd175s50vn18q" path="res://data/cards/card_scarab_yellow.tres" id="9_aqf13"]
 [ext_resource type="Resource" uid="uid://bfo6xlejbu3oe" path="res://data/cards/card_lotus_black.tres" id="10_u0day"]
+[ext_resource type="PackedScene" uid="uid://cb2hjj7f5x5vb" path="res://scenes/debug/state_machine_debug.tscn" id="14_hhmph"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqf13"]
 size = Vector2(500, 140)
@@ -106,3 +107,9 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaitingArea"]
 position = Vector2(0, -420)
 shape = SubResource("RectangleShape2D_aqf13")
+
+[node name="StateMachineDebug" parent="." instance=ExtResource("14_hhmph")]
+unique_name_in_owner = true
+offset_left = -250.0
+offset_top = -490.0
+offset_right = 250.0
