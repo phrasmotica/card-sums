@@ -17,7 +17,11 @@ func _enter_tree() -> void:
 	_card_manager.disable_all_cards()
 
 func _on_waiting_area_exited() -> void:
-	transition_state(CardHand.State.PAUSED)
+	# assume we're already dragging a card in order to have entered this state
+	var state_data := CardHandStateData.build() \
+		.with_is_dragging(true)
+
+	transition_state(CardHand.State.PAUSED, state_data)
 
 func _on_dropped(card: Card) -> void:
 	# notify that the card is changing owners
